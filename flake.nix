@@ -7,6 +7,7 @@
 
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
+    ghostty.url = "github:ghostty-org/ghostty";
   };
 
   nixConfig = {

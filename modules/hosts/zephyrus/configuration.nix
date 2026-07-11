@@ -5,6 +5,7 @@
     self.nixosModules.zephyrusHardware
     self.nixosModules.niri
     self.nixosModules.noctalia
+    self.nixosModules.ghostty
   ];
 
   nix.settings.experimental-features = [
@@ -86,8 +87,6 @@
     zellij
     git
     mise
-    kitty
-    ghostty
     neovim
     lshw
     usbutils
@@ -96,6 +95,7 @@
     python314
     pipx
     opencode
+    herdr
   ];
 
   fonts.packages = with pkgs; [

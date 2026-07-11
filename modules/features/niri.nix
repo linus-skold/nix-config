@@ -24,6 +24,7 @@
                     "Mod+Return".spawn-sh = lib.getExe pkgs.ghostty;
                     "Mod+Q".close-window = _: { };
                     "Mod+S".spawn = ["noctalia" "msg" "panel-toggle" "launcher"];
+                    "Mod+Shift+S".spawn = ["noctalia" "msg" "screenshot-region"];
                     #"Mod+S".spawn-sh = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.myNoctalia "msg panel-toggle launcher"];
                 };
             };
