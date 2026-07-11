@@ -16,7 +16,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  #networking.networkmanager.enable = true;
   #networking.wireless.iwd.enable = true;
   networking.hostName = "nixos";
 
@@ -143,24 +143,33 @@
                     naturalScrolling = false;
                 };
             };
-            xserver = {
+            # xserver = {
+            #     enable = true;
+            #     videoDrivers = [ "nvidia" ];
+            #     xkb = {
+            #         layout = "us,se";
+            #         variant = "";
+            #         options = "grp:win_space_toggle";
+            #     };
+            # };
+#            blueman.enable = true;
+            # pipewire = {
+            #     enable = true;
+            #     alsa.enable = true;
+            #     alsa.support32Bit = true;
+            #     pulse.enable = true;
+            # };
+            openssh = {
                 enable = true;
-                videoDrivers = [ "nvidia" ];
-                xkb = {
-                    layout = "us,se";
-                    variant = "";
-                    options = "grp:win_space_toggle";
+                openFirewall = true;
+                settings = {
+                    PasswordAuthentication = true;
+                    KbdInteractiveAuthentication = false;
+                    PermitRootLogin = "no";
+                    AllowUsers = ["linus"];
+                    MaxAuthTries = 3;
                 };
             };
-            blueman.enable = true;
-            pipewire = {
-                enable = true;
-                alsa.enable = true;
-                alsa.support32Bit = true;
-                pulse.enable = true;
-            };
-            upower.enable = true;
-            tuned.enable = true;
         };
 
         system.stateVersion = "25.11"; # Did you read the comment?
