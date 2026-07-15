@@ -3,6 +3,7 @@
     flake.nixosModules.zephyrusConfig = { pkgs, lib, config, ...}: {
   imports = [
     self.nixosModules.zephyrusHardware
+    self.nixosModules.zephyrusWireguard
     self.nixosModules.niri
     self.nixosModules.noctalia
     self.nixosModules.ghostty
@@ -20,7 +21,6 @@
   #networking.networkmanager.enable = true;
   #networking.wireless.iwd.enable = true;
   networking.hostName = "nixos";
-
   security.rtkit.enable = true;
 
   # Set your time zone.
@@ -96,6 +96,8 @@
     pipx
     opencode
     herdr
+    claude-code
+    lazygit
   ];
 
   fonts.packages = with pkgs; [
