@@ -16,7 +16,9 @@
                 ];
 
                 input.keyboard = {
-                    xkb.layout = "us,se";
+                    xkb.layout = "us,sv";
+                    xkb.variant = "";
+                    xkb.options = "grp:win_space_toggle";
                 };
                 input.touchpad = {
                     tap = {};
