@@ -5,6 +5,7 @@
             enable = true;
             package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
         };
+
     };
 
     perSystem = { pkgs, lib, ... }: {
@@ -13,7 +14,10 @@
             settings = {
                 spawn-at-startup = [
                     (lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.myNoctalia)
+                    [ (lib.getExe pkgs.xwayland-satellite) ":0" ]
                 ];
+
+                environment.DISPLAY = ":0";
 
                 input.keyboard = {
                     xkb.layout = "us,se";
