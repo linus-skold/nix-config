@@ -16,7 +16,7 @@
                 ];
 
                 input.keyboard = {
-                    xkb.layout = "us,sv";
+                    xkb.layout = "us,se";
                     xkb.variant = "";
                     xkb.options = "grp:win_space_toggle";
                 };
@@ -29,10 +29,12 @@
                
                layout.gaps = 5;
                 binds = {
-                    "Mod+Return".spawn-sh = lib.getExe pkgs.ghostty;
+                    "Mod+Return".spawn-sh = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.myGhostty;
                     "Mod+Q".close-window = _: { };
                     "Mod+S".spawn = ["noctalia" "msg" "panel-toggle" "launcher"];
                     "Mod+Shift+S".spawn = ["noctalia" "msg" "screenshot-region"];
+                    "Mod+Ctrl+F".toggle-windowed-fullscreen = _: { };
+                    "Mod+F".maximize-column = _: { };
                 };
 
             };
