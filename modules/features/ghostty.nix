@@ -14,6 +14,7 @@
             inherit pkgs;
             settings = {
                 font-size = 14;
+                gtk-titlebar = false;
                 window-decoration = false;
             };
             keybindings."ctrl+shift+c" = "copy_to_clipboard";
