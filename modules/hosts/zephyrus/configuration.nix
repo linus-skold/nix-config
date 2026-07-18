@@ -22,6 +22,7 @@
   #networking.wireless.iwd.enable = true;
   networking.hostName = "nixos";
   security.rtkit.enable = true;
+  security.polkit.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
@@ -45,6 +46,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.linus = {
+    shell = pkgs.nushell;
     isNormalUser = true;
     description = "Linus";
     extraGroups = [
