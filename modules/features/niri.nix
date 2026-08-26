@@ -18,6 +18,7 @@
                 ];
 
                 environment.DISPLAY = ":0";
+                environment.QT_QPA_PLATFORMTHEME = "qt6ct";
 
                 input.keyboard = {
                     xkb.layout = "us,se";
@@ -28,7 +29,9 @@
                     tap = {};
                     dwt = {};
                     natural-scroll = {};
-                    click-method = "clickfinger";
+                    click-method = "button-areas";
+                    tap-button-map = "left-middle-right";
+                    
                 };
                
                layout.gaps = 5;
