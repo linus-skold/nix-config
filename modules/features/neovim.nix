@@ -1,0 +1,14 @@
+{ self, inputs, ...}: {
+    flake.nixosModules.neovim = { pkgs, lib, ... }: {
+        programs.neovim = {
+            enable = true;
+            package = self.packages.${pkgs.stdenv.hostPlatform.system}.neovimFeature;
+        };
+    };
+
+    perSystem = { pkgs, lib, ... }: {
+        packages.neovimFeature = inputs.wrapper-modules.wrappers.neovim.wrap {
+            inherit pkgs;
+        };
+    }; 
+}
