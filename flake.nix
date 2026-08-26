@@ -9,6 +9,8 @@
     noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
 
     wrapper-modules.url = "path:/home/linus/Development/nix-wrapper-modules";
+
+    zen-browser.url = "github:youwen5/zen-browser-flake";
   };
 
   nixConfig = {
