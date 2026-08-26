@@ -7,6 +7,9 @@
     self.nixosModules.niri
     self.nixosModules.noctalia
     self.nixosModules.ghostty
+    self.nixosModules.development
+    self.nixosModules.neovim
+    self.nixosModules.dotfiles
   ];
 
   nix.settings.experimental-features = [
@@ -83,13 +86,11 @@
     unzip
     discord
     firefox
-    nixfmt
     nushell
     zoxide
     zellij
     git
     mise
-    neovim
     lshw
     usbutils
     supergfxctl
@@ -100,6 +101,19 @@
     herdr
     claude-code
     lazygit
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    gcc
+    clang
+    cmake
+    zig
+    gnumake
+    libtool
+    kdePackages.dolphin
+    qt6Packages.qt6ct
+    (llama-cpp.override {cudaSupport = true;})
+    cudaPackages.cudatoolkit
+    cudaPackages.cudnn
+    llama-swap
   ];
 
   fonts.packages = with pkgs; [
@@ -109,60 +123,23 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  console = {
-    font = "fira-code";
+console.font = "fira-code";
+ 
+ hardware = {
+    graphics.enable = true;
+    graphics.enable32Bit = true;
+    
+    nvidia.modesetting.enable = true;
+    nvidia.open = true;
+    nvidia.nvidiaSettings = true;
+
+    bluetooth.enable = true;
   };
 
-  hardware = {
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-      #driSupport = true;
-      #driSupport32Bit = true;
-    };
-    nvidia = {
-      modesetting.enable = true;
-      open = true;
-      nvidiaSettings = true;
-      #package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-    };
-    bluetooth = {
-      enable = true;
-    };
-  };
-
-  # programs.steam = {
-  #   enable = true;
-  #   remotePlay.openFirewall = true;
-  #   dedicatedServer.openFirewall = true;
-  # };
-
+  programs.nix-ld.enable = true;
         services = {
             asusd.enable = true;
             gpm.enable = true;
-            libinput = {
-                enable = true;
-                touchpad = {
-                    naturalScrolling = false;
-                };
-            };
-            # xserver = {
-            #     enable = true;
-            #     videoDrivers = [ "nvidia" ];
-            #     xkb = {
-            #         layout = "us,se";
-            #         variant = "";
-            #         options = "grp:win_space_toggle";
-            #     };
-            # };
-#            blueman.enable = true;
-            # pipewire = {
-            #     enable = true;
-            #     alsa.enable = true;
-            #     alsa.support32Bit = true;
-            #     pulse.enable = true;
-            # };
             openssh = {
                 enable = true;
                 openFirewall = true;
