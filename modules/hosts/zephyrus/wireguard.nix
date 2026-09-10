@@ -10,7 +10,7 @@
                     {
                         publicKey = "tDaP/UZI+R/uVYI54ntAB+wmomNiFHYfE/7+gYsdVhc=";
                         allowedIPs = [ "10.100.0.0/16" ];
-                        endpoint = "";
+                        endpoint = "83.250.37.142:51820";
                         persistentKeepalive = 25;
                     }
                 ];

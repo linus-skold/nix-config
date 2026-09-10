@@ -25,7 +25,14 @@
       ruby
       lua
       go
-      rustup
+#      rustup
+      gcc
+      clang
+      cmake
+      zig
+      gnumake
+      libtool
+
 
       # Dev utilities
       git
@@ -33,6 +40,10 @@
       fzf
       fd
       tree-sitter
+      zoxide
+      herdr
+      lazygit
+      claude-code
     ];
 
     # Optional: Configure user-level neovim if needed

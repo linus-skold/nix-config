@@ -3,6 +3,8 @@
     flake.nixosModules.zephyrusConfig = { pkgs, lib, config, ...}: {
   imports = [
     self.nixosModules.zephyrusHardware
+    self.nixosModules.llama
+    self.nixosModules.lutris
     self.nixosModules.zephyrusWireguard
     self.nixosModules.niri
     self.nixosModules.noctalia
@@ -10,6 +12,7 @@
     self.nixosModules.development
     self.nixosModules.neovim
     self.nixosModules.dotfiles
+    self.nixosModules.mise
   ];
 
   nix.settings.experimental-features = [
@@ -23,7 +26,7 @@
   # Enable networking
   #networking.networkmanager.enable = true;
   #networking.wireless.iwd.enable = true;
-  networking.hostName = "nixos";
+  networking.hostName = "zephyrus-2025";
   security.rtkit.enable = true;
   security.polkit.enable = true;
 
@@ -85,35 +88,16 @@
     aria2
     unzip
     discord
-    firefox
     nushell
-    zoxide
-    zellij
-    git
-    mise
     lshw
     usbutils
     supergfxctl
-    zig
     python314
     pipx
-    opencode
-    herdr
-    claude-code
-    lazygit
+    file
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    gcc
-    clang
-    cmake
-    zig
-    gnumake
-    libtool
     kdePackages.dolphin
     qt6Packages.qt6ct
-    (llama-cpp.override {cudaSupport = true;})
-    cudaPackages.cudatoolkit
-    cudaPackages.cudnn
-    llama-swap
   ];
 
   fonts.packages = with pkgs; [
@@ -137,24 +121,24 @@ console.font = "fira-code";
   };
 
   programs.nix-ld.enable = true;
-        services = {
-            asusd.enable = true;
-            gpm.enable = true;
-            openssh = {
-                enable = true;
-                openFirewall = true;
-                settings = {
-                    PasswordAuthentication = true;
-                    KbdInteractiveAuthentication = false;
-                    PermitRootLogin = "no";
-                    AllowUsers = ["linus"];
-                    MaxAuthTries = 3;
-                };
-            };
+  services = {
+    asusd.enable = true;
+    gpm.enable = true;
+    openssh = {
+        enable = true;
+        openFirewall = true;
+        settings = {
+            PasswordAuthentication = true;
+            KbdInteractiveAuthentication = false;
+            PermitRootLogin = "no";
+            AllowUsers = ["linus"];
+            MaxAuthTries = 3;
         };
-
-        system.stateVersion = "25.11"; # Did you read the comment?
-
     };
+  };
+
+    system.stateVersion = "25.11"; # Did you read the comment?
+
+  };
 
 }
