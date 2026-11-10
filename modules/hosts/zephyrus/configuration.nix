@@ -3,6 +3,7 @@
     flake.nixosModules.zephyrusConfig = { pkgs, lib, config, ...}: {
   imports = [
     self.nixosModules.zephyrusHardware
+    self.nixosModules.zephyrusAudio
     self.nixosModules.llama
     self.nixosModules.lutris
     self.nixosModules.zephyrusWireguard
@@ -20,7 +21,14 @@
     "flakes"
   ];
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Enable networking
@@ -95,6 +103,7 @@
     python314
     pipx
     file
+    brave 
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     kdePackages.dolphin
     qt6Packages.qt6ct
@@ -109,10 +118,12 @@
 
 console.font = "fira-code";
  
+ services.xserver.videoDrivers = [ "nvidia" ];
+
  hardware = {
     graphics.enable = true;
     graphics.enable32Bit = true;
-    
+
     nvidia.modesetting.enable = true;
     nvidia.open = true;
     nvidia.nvidiaSettings = true;
