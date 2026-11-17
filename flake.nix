@@ -16,6 +16,8 @@
     wrapper-modules.url = "path:/home/linus/Development/nix-wrapper-modules";
 
     zen-browser.url = "github:youwen5/zen-browser-flake";
+
+    battlenet.url = "github:linus-skold/battlenet.nix";
   };
 
   # NOTE: nixConfig is ignored for non-trusted users (trusted-users = root here),

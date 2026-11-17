@@ -5,6 +5,7 @@
     self.nixosModules.zephyrusHardware
     self.nixosModules.zephyrusAudio
     self.nixosModules.zephyrusSteam
+    self.nixosModules.battlenet
     self.nixosModules.llama
     self.nixosModules.lutris
     self.nixosModules.zephyrusWireguard
@@ -165,6 +166,14 @@ console.font = "fira-code";
         };
     };
   };
+
+    programs.battlenet = {
+      enable = true;
+      games = {
+        wow_anniversary.enable = true;
+        wowf.enable = true;
+      };
+    };
 
     system.stateVersion = "25.11"; # Did you read the comment?
 
