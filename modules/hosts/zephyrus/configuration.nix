@@ -118,7 +118,10 @@
 
 console.font = "fira-code";
  
- services.xserver.videoDrivers = [ "nvidia" ];
+ # amdgpu drives the panel in Hybrid mode (see supergfxd below); nvidia is
+ # only engaged via PRIME render offload, so the dGPU no longer has to also
+ # carry the compositor/desktop while a game is maxing it out.
+ services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
  hardware = {
     graphics.enable = true;
@@ -128,12 +131,26 @@ console.font = "fira-code";
     nvidia.open = true;
     nvidia.nvidiaSettings = true;
 
+    # Bus IDs for this host (RTX 5070 at 64:00.0, AMD iGPU at 65:00.0 -
+    # decimal 100/101). Offload lets specific processes (e.g. Steam/games)
+    # render on the dGPU while everything else stays on the iGPU.
+    nvidia.prime = {
+      offload.enable = true;
+      offload.enableOffloadCmd = true;
+      nvidiaBusId = "PCI:100:0:0";
+      amdgpuBusId = "PCI:101:0:0";
+    };
+
     bluetooth.enable = true;
   };
 
   programs.nix-ld.enable = true;
   services = {
     asusd.enable = true;
+    # Controls the MUX switch (Hybrid/Integrated/dGPU-only) on this ASUS
+    # laptop. Needs `supergfxctl -m Hybrid` + logout/reboot once to actually
+    # flip the mux so the panel is driven by amdgpu instead of nvidia.
+    supergfxd.enable = true;
     gpm.enable = true;
     openssh = {
         enable = true;
