@@ -36,6 +36,7 @@
 
       # Dev utilities
       git
+      gh
       ripgrep
       fzf
       fd
