@@ -4,6 +4,7 @@
   imports = [
     self.nixosModules.zephyrusHardware
     self.nixosModules.zephyrusAudio
+    self.nixosModules.zephyrusSteam
     self.nixosModules.llama
     self.nixosModules.lutris
     self.nixosModules.zephyrusWireguard
